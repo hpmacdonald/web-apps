@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <title>Coin Simulator</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--  -->
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'new_app/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'new_app/js/script.js' %}"></script>
+    <link href="https://fonts.googleapis.com/css?family=Spartan&display=swap" rel="stylesheet">
+    </head>
+  
+    <body>
+        <div class="container">
+            <section>
+            <h2 class="title">Game Point Simulator</h2>
+            <div class="boxes">
+                <form id="move1" action="/farmgold" method="POST>"
+                {% csrf_token %}
+                <div id="box1"> <h2>Farm</h2>
+                    <p>(earns 10-20 golds)</p>
+                    <button class="button"><img class="brush" align="bottom" src="{% static 'new_app/img/coin.svg'%}" height="60" width="60"></button>
+                    <!-- <a><button class="btn">Find Gold!</button></a> -->
+                </div>
+                </form>    
+            
+                <form id="move2" action="/cavegold" method="POST>"
+                {% csrf_token %}
+                <div id="box2"> <h2>Cave</h2>
+                    <p>(earns 5-10 golds)</p>
+                    <button class="button"><img class="brush" align="bottom" src="{% static 'new_app/img/coin.svg'%}" height="60" width="60"></button>
+                    <!-- <a><button class="btn">Find Gold!</button></a> -->
+                </div>
+                </form>    
+            
+                <form id="move3" action="/housegold" method="POST>"
+                {% csrf_token %}
+                <div id="box3"> <h2>House</h2>
+                    <p>(earns 2-5 golds)</p>
+                    <button class="button"><img class="brush" align="bottom" src="{% static 'new_app/img/coin.svg'%}" height="60" width="60"></button>
+                    <!-- <a><button class="btn">Find Gold!</button></a> -->
+                </div>
+                </form>  
+            
+                <form id="move4" action="/casinogold" method="POST>"
+                {% csrf_token %}
+                <div id="box4"><h2>Casino</h2>
+                    <p>(earns 0-50 golds)</p>
+                    <button class="button"><img class="brush" align="bottom" src="{% static 'new_app/img/coin.svg'%}" height="60" width="60"></button>
+                    <!-- <a><button class="btn">Find Gold!</button></a> -->
+                </div>   
+            </div>
+        </section>
+            <div class="footer">
+                <br>
+                    <h2>Game Console</h2>
+                    <textarea name="game-console" class="form-control" cols="10" rows="05">
+                    {% for message in request.session.messages %}
+                    {{ message }}
+        
+                    {% endfor %}
+                    </textarea>
+                    <!-- <form action="/clear">
+                    {% csrf_token %}
+                    <input class="btn" type="submit" value="Reset Game">
+                    </form> -->
+            </div>
+        </div>
+    
+    </body>
+</html>

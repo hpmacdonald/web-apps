@@ -1,0 +1,79 @@
+#box1, #box2, #box3, #box4 {
+    height: 200px;
+    width: 200px;
+    color: white;
+    /* background-color:rgb(64,66,78); */
+    display: inline-block;
+    text-align: center;
+    /* outline-style: solid;
+    outline-color: white; */
+    font-size: 20px;
+    font-weight: 600;
+    vertical-align: top;
+    padding: 20px;
+    margin: 10px;
+}
+.icon-ok {
+    color: black;
+    height: 05px;
+    width: 05px;
+}
+
+.container {
+    background-color: white;
+    max-width: 850px;
+    height: 100%;
+    margin: 0 auto;
+    border-top: 20px;
+    padding: 05 05 20 05%;
+    margin: 05%;
+}
+#move1, #move2, #move3, #move4 {
+    display: inline-block;
+
+}
+.boxes {
+    margin-top: 40px;
+}
+.footer {
+    height: 220px;
+    width:735px;
+    text-align:center;
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 15px;
+    padding-left: 18%;
+}
+.btn {
+    background-color: white;
+    color: gold; 
+}
+.form-control{
+    background-color: #269ef0;
+    color: white;
+    padding: 20px;
+}
+
+.title {
+    padding-top: 20px;
+    font-size: 50px;
+    font-weight: 900;
+    color: gold;
+    text-align: center;
+    font-family: 'Spartan' ;
+}
+h2, p, a, input {
+    font-family: 'Spartan' ;
+}
+
+section {
+    height: 100%;
+    width: 120%;
+    padding: 40px 0px 0px 40px;
+    background-image: url(https://media.mojang.com/blog-image/2c34ca1217c7d95e76a6f8d646adf9208f78145a/blogmcnet.png)
+    }
+
+.button {
+    background: transparent;
+    border-style: none;
+}

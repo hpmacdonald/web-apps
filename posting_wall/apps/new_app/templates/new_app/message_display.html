@@ -1,0 +1,67 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="" content="width=device-width, initial-scale=1.0">
+    <title>Web Space Studio </title>
+    <meta description="">
+    {% load static %}
+    <!-- FAVICON -->
+   
+    <!-- STYLING -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'new_app/css/index.css' %}">
+    
+    <!-- FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+
+    <div class="body">
+        <div class="header">
+            <form method=POST action="/">
+            {% csrf_token %}
+            <h2>Welcome, <font color="047AFB">{{request.session.user}}</font>.</h2>
+            </form>
+            <form method=POST action="/success">
+                {% csrf_token %}
+                <button id="button2" class="btn btn-warning" type="submit">Home</button>
+                </form>
+        </div>
+        <div class="gradient"></div>
+        
+        <div class="add_messages">
+                <table class="table table-striped"> 
+                        <thead>
+                            <tr>
+                            <th> </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><h3>{{one_message.id}}</h3></td>
+                            </tr>
+                            <tr>
+                                <td><h3>{{one_message.title}}</h3></td>
+                            </tr>
+                            <tr>
+                                <td><h3>{{one_message.description}}</h3></td>
+                            </tr>
+                        </tbody>
+                    </table>
+           
+           
+        </div>
+        <form action="/edit_message/{{message.id}}" method="POST">
+        {% csrf_token %}
+        <button class="btn btn-primary">Edit</button>
+        </form>
+        
+        </div>
+        
+    </div>
+</body>
+</html>

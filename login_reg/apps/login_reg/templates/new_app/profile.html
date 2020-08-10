@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'login_reg/css/profile.css' %}">
+        <link rel="stylesheet" href="{% static 'login_reg/js/script.js' %}"></script>
+        <!-- BOOTSTRAP LINKS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <!-- FONT LINKS -->
+        <link href="https://fonts.googleapis.com/css?family=Oxanium&display=swap" rel="stylesheet">
+    </head>
+   
+    <body>
+        <section>
+        <div class="header">
+            <div class="top"><h1>Welcome to your wall {{request.session.user}}.</h1></div><br>
+                <form method=POST action="/">
+                    {% csrf_token %}
+                    <button id="button2" class="btn btn-primary" type="submit">Logout</button>
+                    </form>
+        </div>
+        <div class="container">
+            <div class="container-left">
+                <img class="mclaren" src="{% static 'login_reg/images/typewriter.jpg' %}" alt="car-pic"><br>
+                <br>
+                <form method=POST action="/add_new_message">
+                {% csrf_token %}
+                <h5>Post your content here:</h5>
+                <input class="" type="textarea" rows="10" cols="30" name="add_message">
+                <input class="btn btn-primary" type="submit" value="POST"><br><br>
+                </form>
+               
+            </div>
+
+            <!-- MESSAGES START HERE  -->
+            <div class="container-right">
+                <div class="container-right">
+                    <div class="scroll-bar-wrap">
+                        <div class="scroll-box">
+                            <h2><font color="gold">Public Postings:</font></h2>
+                            
+                            <br>
+                            {% for message in all_messages %}
+                            <h5 id="font">{{message.poster.first_name}}:</h5>
+                
+                            <div class=message>
+                            <div class="message-box">
+                                <small>{{message.message}}</small></div><br><a href="/delete/{{message.id}}"> <small>Delete</small></a>
+                            </div>
+                            
+                            {% for comment in message.comments.all %}
+                            <br>
+                            <small>Comments:</small><br>
+                            <small>
+                                <font color="gold">{{comment.poster.first_name}}</font>:
+                                {{comment.comment}} 
+                            </small>
+                            {% endfor %}
+                            <div class="block_1"></div> <hr class="message_line"/>
+                
+                            <div class=poster_date>{{message.created_at}}</div><br>
+                            <form method=POST action="/comments/{{message.id}}">
+                                {% csrf_token %}<h5 id="font">Comment:</h5> 
+                                <input class="input_box" type="textbox" name="comment">
+                                <input class="btn btn-primary" type="submit" value="POST"><br>
+                            </form>
+                            <div class="block_1"></div> <hr class="message_line2"/>
+                            {% endfor %}
+                            <div class="cover-bar"></div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+        <!-- END OF CONTAINER -->
+        </section>
+        </div>
+          
+    </body>
+</html>

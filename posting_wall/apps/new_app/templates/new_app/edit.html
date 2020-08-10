@@ -1,0 +1,74 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="" content="width=device-width, initial-scale=1.0">
+    <title>Web Space Studio </title>
+    <meta description="">
+    {% load static %}
+    <!-- FAVICON -->
+   
+    <!-- STYLING -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'new_app/css/edit.css' %}">
+    
+    <!-- FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+
+    <nav class="navbar">
+        {% csrf_token %}
+        <a class="navbar-brand" href="/success">
+            <img class="svg-pic" height="40px" width="40px" src="{% static 'new_app/images/animals.svg' %}">
+            <font>Fake Twitter</font>
+        </a>
+        <a class="navbar-brand">
+            <form method=POST action="/logout">
+                <button class="btn btn-light custom-button" type="submit">Logout</button>
+            </form>
+        </a>
+      </nav>
+        <div class="left-box">
+          <section>
+
+            <form method=POST action="/go_to_message">
+                {% csrf_token %}
+                <h2>Edit your <font color="0fa3ff">posts</font>, {{request.session.user}}</h2>
+            </form>
+            <form class="form-group" method=POST action="/success">
+                {% csrf_token %}
+                <button id="button2" class="btn btn-warning custom-button-two" type="submit">Back to messages</button>
+            </form>
+
+          </section>
+        </div>
+       
+     
+
+        <div class="right-box">
+            <h1>Editing Area: </h1>
+   
+            <form class="form-group" action="/process_edit/{{new_edit.id}}" method="post">
+                {% csrf_token %}
+                <h3>Message ID: {{new_edit.id}}<br>
+                <input type="text" class="form-control:focus" name="title" value="{{new_edit.title}}"><br>
+                <br>
+                Post:<br>
+                <textarea type="text" class="form-control:focus" name="description" rows="3" placeholder="{{new_edit.description}}" value="{{new_edit.description}}"></textarea><br>  
+                <br>     
+                <button class="btn btn-primary custom-button-one" type="submit">Make Edit</button>
+                </h3>
+            </form>
+            <form action="/process_delete/{{new_edit.id}}" method="POST">
+                {% csrf_token %}
+            <button class="btn btn-danger custom-button-one">Delete</button>
+            </form>
+        </div>      
+
+  
+</body>
+</html>

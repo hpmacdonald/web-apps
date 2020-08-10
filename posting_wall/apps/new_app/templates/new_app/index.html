@@ -1,0 +1,117 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="" content="width=device-width, initial-scale=1.0">
+    <title>Web Space Studio </title>
+    <meta description="">
+    {% load static %}
+    <!-- FAVICON -->
+   
+    <!-- STYLING -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'new_app/css/style.css' %}">
+    
+    <!-- FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+
+
+</head>
+<script>
+    function myFunction() {
+  var x = document.getElementById("myDIV");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+function myFunction2() {
+  var x = document.getElementById("myDIV2");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+<body>
+
+    <div class="body">
+
+        <div class="left-box">
+            <section>
+                <h1>Welcome to Fake Twitter</h1>
+                <br>
+                <h2><img class="svg-pic" height="50px" width="50px" src="{% static 'new_app/images/user.svg' %}"> Make a profile.</h2>
+                <br>
+                <h2><img class="svg-pic" height="50px" width="50px" src="{% static 'new_app/images/chat.svg' %}"> Post.</h2>
+                <h2><img class="svg-pic" height="50px" width="50px" src="{% static 'new_app/images/edit.svg' %}"> Like. Edit. Delete.</h2>
+            </section>
+        </div>
+
+        <div class="right-box">
+            <div class=login>
+                <form method=POST action="/login_user">
+                <h2>Login:</h2>
+                {% csrf_token %}
+                <input autocomplete="off" placeholder="Email" type="text" name="email">
+                <input autocomplete="off" placeholder="Password" type="text" name="password">
+                <button class="btn btn-primary custom-button" type="submit">Login</button>
+                </form>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="inner-right-box">
+                <img class="svg-pic" height="150px" width="150px" src="{% static 'new_app/images/animals.svg' %}">
+                <br>
+                <br>
+                <h1>Join today.</h1>
+                <button class="btn btn-light custom-button-one" onclick="myFunction()">Register</button>
+                <div id="myDIV" class="register">
+                    <form method=POST action="/register_user">
+                    <h1>Register</h1>
+                    {% csrf_token %}
+                    First Name: <br>
+                    <input type="text" class="custom-input" name="first_name"><br>
+                    
+                    Last Name: <br>
+                    <input type="text" class="custom-input" name="last_name"><br>
+                    
+                    Email: <br>
+                    <input type="text" class="custom-input" name="email"><br>
+                    
+                    Password:<br>
+                    <input type="text" class="custom-input" name="password"><br>
+                    
+                    Confirm Password: <br>
+                    <input type="text" class="custom-input" name="confirm_password"><br><br>
+                    <button class="btn btn-primary custom-button" type="submit">Create User</button>
+                
+                    </form>
+                    </div>
+                    <br>
+                    <br>
+                    <button onclick="myFunction2()" class="btn btn-light custom-button-two">Login</button>
+                    <div id="myDIV2" class=login>
+                        <form method=POST action="/login_user">
+                        <h1>Login:</h1>
+                        {% csrf_token %}
+                        Email: <br>
+                        <input autocomplete="off" class="custom-input" type="text" name="email"><br>
+                        Password: <br>
+                        <input autocomplete="off" class="custom-input" type="text" name="password"><br><br>
+                        <button class="btn btn-primary custom-button" type="submit">Login</button>
+                        </form>
+                    </div>
+                    </div>
+        </div>
+    </div>
+    <div class="footer">
+        <p>Fakebook</p>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,147 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="" content="width=device-width, initial-scale=1.0">
+    <title>Web Space Studio </title>
+    <meta description="">
+    {% load static %}
+    <!-- FAVICON -->
+   
+    <!-- STYLING -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'new_app/css/profile.css' %}">
+    
+    <!-- FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
+
+
+</head>
+<script>
+        function myFunction() {
+  var x = document.getElementById("myDIV");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+function myFunction2() {
+  var x = document.getElementById("myDIV2");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+<body>
+
+
+      
+            
+            <nav class="navbar">
+                {% csrf_token %}
+                <a class="navbar-brand" href="/success">
+                    <img class="svg-pic" height="40px" width="40px" src="{% static 'new_app/images/animals.svg' %}">
+                    <font>Fake Twitter</font>
+                </a>
+                <a class="navbar-brand">
+                    {% csrf_token %}
+                    <form method=POST action="/">
+                        <button class="btn btn-light custom-button" type="submit">Logout</button>
+                    </form>
+                </a>
+              </nav>
+            
+                        
+           
+        
+
+        <div class="left-box">
+            <section>
+            
+            
+
+                
+                <img class="stock-profile" height="150px" width="150px" src="{% static 'new_app/images/stock.png' %}">
+                {% csrf_token %}
+                <h2><font color="0fa3ff">{{request.session.user}}</font>, welcome to your profile.</h2>
+                <button class="btn btn-light custom-button-two" onclick="myFunction2()">Add Bio</button>
+                <div id="myDIV2" class="inner-left-box">
+                    <form method=POST action="/create_bio">
+                        {% csrf_token %}
+                    <h3>Add a biography</h3>
+                    <h8>Message:</h8><br>
+                    <textarea type="text" class="form-control:box-shadow" rows="4" name="bio_desc"></textarea>
+                        <br>
+                    <br>
+                    <button class="btn btn-primary custom-button-two">Add</button>
+                    </form>
+                    <form action="/process_delete/{{profile.id}}" method="POST">
+                        {% csrf_token %}
+                    <button class="btn btn-dark custom-button-two">Delete</button>
+                    </form>
+                </div>
+
+            <div class="profile-box">
+                {% for profile in display_profile %}
+                {{ profile.all }}
+                {% endfor %}
+            </div>
+        </section>
+        </div>      
+        
+        <div class="right-box">
+            <button class="btn btn-light custom-button-one" onclick="myFunction()">New Message</button>
+            <div id="myDIV" class="add_messages">
+                <form method=POST action="/go_to_message">
+                    {% csrf_token %}
+                    <br>
+                <h8>Title:</h8><br>
+                <input type="text" class="form-control:box-shadow" name="message_title"><br>
+                <h8>Message:</h8><br>
+                <textarea type="text" class="form-control:box-shadow" rows="4" name="message_desc"></textarea>
+                    <br>
+                <br>
+                <button class="btn btn-primary custom-button">Add</button>
+                </form>
+            </div>      
+
+            <div class="all_messages">
+                <table class="table table-striped">
+                    <h1>All messages:</h1>
+                        {% for messages in all_messages %}
+                        <thead>
+                            <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th>Message</th>
+                            <th>Posted By</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <td>{{messages.user_likes.count}}</td>
+                            <td><a href="like_this/{{messages.id}}"><img src="{% static 'new_app/images/heart.svg' %}" height="20px" width="20px" ></a></td>
+                            <td><a id="link" href="edit_message/{{messages.id}}">Edit</a></td>
+                            <td>{{messages.title}}</td>
+                            <td><a>{{messages.description}}</a></td>
+                            <td><a>{{request.session.user}}</a></td>
+                            </tr>
+                        </tbody>
+                        {% endfor %}
+                </table>
+            </div>        
+        </div>
+
+  
+
+
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Show All Shows</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'new_app/css/new.css' %}">
+        <link rel="stylesheet" href="{% static 'new_app/js/script.js' %}"></script>
+        <!-- BOOTSTRAP LINKS -->
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <!-- FONT LINKS  -->
+        <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+       
+
+    </head>
+    <body>
+        <div class="container">
+            <nav>
+                <ul>
+                  <li> 
+                    <!-- link one -->
+                    <a class="link" href="/shows"> Shows </a>
+                  </li>
+                  <li>
+                    <!-- link two -->
+                     <a class="link" href="/"> Add New Show </a>
+                  </li>
+                </ul> 
+              </nav>
+           
+            <p><font size="40px">All Shows</font></p>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Network</th>
+                        <th>Release Date</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                {% for s in all_shows %}
+                <tbody>
+                    <tr>
+                        <td>{{ s.id }}</td>
+                        <td>{{ s.title }} </td>
+                        <td>{{ s.network }}</td>
+                        <td>{{ s.release_date }}</td>
+                        <td><a id="link" href="show_each/{{s.id}}">Show</a>|<a id="link" href="edit/{{s.id}}">Edit</a>|<a id="link" href="process_delete/{{s.id}}">Delete</a></td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+            <div id="sess">
+                    <!-- {{request.session.title}}<br>
+                    {{request.session.network}}<br>
+                    {{request.session.release}}<br> -->
+            </div>
+            
+            <!-- {% for s in all_shows %}
+            {{ s.id }}
+            {{ s.title }}
+            {{ s.network }}
+            {{ s.release_date }}
+            {% endfor %} -->
+
+            <form id="move" action="/" method="GET">
+                {% csrf_token %}
+                <a class="btn btn-warning" href="/">Add Show</a>
+            </form>
+            
+        </div>
+    </body>
+</html>

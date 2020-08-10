@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'new_app/css/new.css' %}">
+        <link rel="stylesheet" href="{% static 'new_app/js/script.js' %}"></script>
+        
+        <!-- FONT LINKS  -->
+        <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+       
+
+    </head>
+    <body>
+ 
+        <div class="container">
+            <nav>
+                <ul>
+                  <li> 
+                    <!-- link one -->
+                    <a class="link" href="/shows"> Shows </a>
+                  </li>
+                  <li>
+                    <!-- link two -->
+                     <a class="link" href="/"> Add New Show </a>
+                  </li>
+                </ul> 
+              </nav>
+            <h1>Edit this: </h1>
+           
+                <form action="/process_edit/{{new_edit.id}}" method="post">
+                    {% csrf_token %}
+                    <h2>ID:<br>
+                    <input type="text" class="form-control:focus" value="{{new_edit.id}}"><br>
+                    Title:<br>
+                    <input type="text" class="form-control:focus" name="title" value="{{new_edit.title}}"><br>
+                    Network: <br>
+                    <input type="text" class="form-control:focus" name="network" value="{{new_edit.network}}"><br>
+                    Release Date: <br>
+                    <input type="text" class="form-control:focus" name="release_date" value="{{new_edit.release_date}}"><br>
+                    <br>
+                    <button class="btn btn-warning" type="submit">Make Edit</button>
+                    </h2>
+                  </form>
+                 
+<!--          
+            <form id="move" action="/shows" method="GET">
+                {% csrf_token %}
+                <a class="btn btn-warning" href="/shows">Submit Show</a>
+            </form> -->  
+        </div>
+    </body>
+</html>
